@@ -20,7 +20,7 @@ function buildHandler(typeName, directory) {
 function makeHandler(content, directory, file) {
   mkdirp(directory).then(() => {
     fs.writeFile(path.join(directory, file), content, {flag: 'w'}, function (err) {
-    console.log(err);
+      console.log(err);
     })
   });
 }

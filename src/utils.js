@@ -34,10 +34,10 @@ function mkdir(path) {
 
 function mkdirp(dirPath) {
   const directories = dirPath.split(path.sep);
-  const dirFactory = Promise.resolve();
+  let dirFactory = Promise.resolve();
 
   for( let i = 1; i <= directories.length; i++ ) {
-    dirFactory.then(() => mkdir(path.join(...directories.slice(0, i))));
+    dirFactory = dirFactory.then(() => mkdir(path.join(...directories.slice(0, i))));
   }
 
   return dirFactory;
@@ -48,3 +48,6 @@ module.exports = {
   mkdir,
   mkdirp,
 };
+
+
+

@@ -7,4 +7,4 @@ const path = require('path');
 // TODO Common handlers
 
 buildAction('myType', path.join(process.cwd(), '_actionTypes'));
-//buildHandler('myType', path.join(process.cwd(), '_reducers', 'app', 'App'));
+buildHandler('myType', path.join(process.cwd(), '_reducers', 'app', 'App'));
