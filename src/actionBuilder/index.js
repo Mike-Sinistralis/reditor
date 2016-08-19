@@ -6,7 +6,7 @@ const { readFile, mkdirp } = utils;
 
 function buildAction(typeName, directory) {
   readFile({
-    path: path.join(__dirname, 'content.js'),
+    dirPath: path.join(__dirname, 'content.js'),
     encoding: 'utf8',
   })
     .then((data) => {
@@ -21,9 +21,8 @@ function buildAction(typeName, directory) {
 
 function makeAction(content, directory, file) {
   mkdirp(directory).then(() => {
-    console.log('hello');
     fs.writeFile(path.join(directory, file), content, {flag: 'w'}, function (err) {
-      console.log(err);
+
     })
   });
 }

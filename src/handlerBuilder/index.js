@@ -6,7 +6,7 @@ const { readFile, mkdirp } = utils;
 
 function buildHandler(typeName, directory) {
   readFile({
-    path: path.join(__dirname, 'content.js'),
+    dirPath: path.join(__dirname, 'content.js'),
     encoding: 'utf8',
   })
     .then((data) => {

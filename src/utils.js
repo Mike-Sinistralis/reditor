@@ -1,9 +1,21 @@
 const fs = require('fs');
 const path = require('path');
 
-function readFile({ path, encoding }) {
+function doesFileExist(dirPath) {
+  return new Promise((res) => {
+    fs.access(dirPath, fs.F_OK, (err) => {
+      if (err) {
+        res(false)
+      }
+
+      res(true);
+    })
+  });
+}
+
+function readFile({ dirPath, encoding }) {
   return new Promise((res, rej) => {
-    fs.readFile(path, encoding, (err, data) => {
+    fs.readFile(dirPath, encoding, (err, data) => {
       if (err) {
         rej(err);
       }
@@ -13,13 +25,12 @@ function readFile({ path, encoding }) {
   });
 }
 
-function mkdir(path) {
+function mkdir(dirPath) {
   return new Promise((res, rej) => {
-    fs.access(path, fs.F_OK, (err) => {
+    fs.access(dirPath, fs.F_OK, (err) => {
       if (err) {
-        fs.mkdir(path, (err) => {
+        fs.mkdir(dirPath, (err) => {
           if (err) {
-            console.log(err);
             rej(err);
           }
 
@@ -47,6 +58,7 @@ module.exports = {
   readFile,
   mkdir,
   mkdirp,
+  doesFileExist,
 };
 
 
