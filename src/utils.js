@@ -54,11 +54,18 @@ function mkdirp(dirPath) {
   return dirFactory;
 }
 
+function convertTypeToConst(type) {
+  type = type.replace(/([a-z])([A-Z])/g, '$1_$2');
+  type = type.replace(/([A-Z])([A-Z][a-z])/g, '$1_$2')
+  return type.toUpperCase();
+}
+
 module.exports = {
   readFile,
   mkdir,
   mkdirp,
   doesFileExist,
+  convertTypeToConst,
 };
 
 

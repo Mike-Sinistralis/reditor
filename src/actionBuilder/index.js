@@ -2,7 +2,7 @@ const fs = require('fs');
 const path = require('path');
 const utils = require('../utils');
 
-const { readFile, mkdirp } = utils;
+const { readFile, mkdirp, convertTypeToConst } = utils;
 
 function buildAction(typeName, directory) {
   readFile({
@@ -10,7 +10,7 @@ function buildAction(typeName, directory) {
     encoding: 'utf8',
   })
     .then((data) => {
-      const content = data.replace(/TYPE_NAME/g, typeName);
+      const content = data.replace(/TYPE_NAME/g, convertTypeToConst(typeName));
 
       makeAction(content, directory, `${typeName}.js`);
     })
